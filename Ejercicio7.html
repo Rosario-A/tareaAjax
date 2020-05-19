@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>Problema 1</title>
+  	<meta charset="utf-8">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            var jdata = JSON.parse(this.responseText);
+            var reg1 = document.getElementById("reg1").value;
+            var reg2 = document.getElementById("reg2").value;
+            myArray = [];
+            var posReg1=0;
+            var posReg2=0;
+            for(i in jdata){
+              var name = jdata[i].region;
+              if(name == reg1){
+              	posReg1 = i;
+              }
+              if(name == reg2){
+              	posReg2 = i;
+              }
+            }
+            var total = jdata[0].confirmed.length;
+            var casosReg1 = jdata[posReg1].confirmed;
+            var casosReg2 = jdata[posReg2].confirmed;
+            for(var j=0;j<total;j++){
+            	var fecha = casosReg1[j].date;
+            	var casosR1 = parseInt(casosReg1[j].value);
+            	var casosR2 = parseInt(casosReg2[j].value);
+            	myArray[j] = [fecha,casosR1,casosR2];
+            }
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'fecha');
+            data.addColumn('number', reg1);
+            data.addColumn('number', reg2);
+            data.addRows(myArray);
+
+            var options = {'title': 'Dos Regiones',
+                       'width':800,
+                       'height':400};
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+          }
+        }
+        xhttp.open("GET", "data.json", true);
+        xhttp.send();
+
+      }
+    </script>
+ </head>
+ <body align="center">
+   <h1>Ejercicio 7</h1>
+   <center><table border="1">
+     <tr>
+       <td>
+        <h2>Region 1</h2>
+       </td>
+       <td>
+        <h2>Region 2</h2>
+       </td>
+     </tr>
+     <tr>
+       <td>
+        <input type="text" id="reg1">
+       </td>
+       <td>
+        <input type="text" id="reg2">
+       </td>
+     </tr>
+   </table></center>
+   <br>
+ 	<button onclick="drawChart()">COMPARAR</button>
+    <div align="center" id="chart_div"></div>
+ </body>
+</html>
