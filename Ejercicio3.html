@@ -4,36 +4,45 @@
 
 <div id="demo">
     <h2>Ejercicio 1 - JSON</h2>
-<button type="button" onclick="loadDoc()">Ver tabla</button>
+<button type="button" onclick="loadDoc('data.json',myFunction)">Ver tabla</button>
 </div>
 
-<script>
-function loadDoc() { 
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
+<script>      
+function loadDoc(url, cfunction) {
+  var xhttp;
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      var data = JSON.parse(this.responseText);
-      var html = "<style> table, th, td { border: 1px solid black;} </style>";  
-      html += "<center><table style='width:15%'>\n";
-      var k=0, t, j, num1;
-      for (k in data.length) {
-        num=data[k]["confirmed"].length-1;
-		    t=data[k]["confirmed"][num].value;
-		    for(j=k; j>0 && data[j-1]["confirmed"][64].value<t; j--){
-            data[j] = data[j-1];
-        }
-        var name = data[i]["region"];
-        html += '<th>' + name + '</th>\n';
-        html += "</tr>\n";
-        data[j]=t;
-		++k;
-      }
-      html += '</table></center>\n'
-      document.getElementById("demo").innerHTML = html;
+      cfunction(this);
     }
   };
-  xhttp.open("GET", "data.json", true);
+  xhttp.open("GET", url, true);
   xhttp.send();
+}
+
+function myFunction(xhttp) {
+  document.getElementById("demo").innerHTML = "respuesta";
+  var data = JSON.parse(xhttp.responseText);
+  var myArray = valores(data);
+  console.log(myArray);
+}
+
+function valores(data) {
+  var myArray = [];
+  for (i in data) {
+    var name = data[i].region;
+    var confirmed= data[i].confirmed;
+    var last = confirmed[confirmed.length - 1];
+    var obj = {
+      name: name,
+      value: parseInt(last.value),
+    };
+    myArray.push(obj);
+  }
+  myArray.sort(function (a, b) {
+      return b.value - a.value;
+    });
+  return myArray;
 }
 </script>
 
