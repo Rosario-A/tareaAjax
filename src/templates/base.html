@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Titulo de la padina</title>
+    </head>
+    <body>
+        {% include 'nav.html' %}
+        <h1>hola mundo desde django ahora con templates</h1>
+        Estoy conectada como {{request.user}}
+        Ahora mismo estoy conectado? {{request.user.is_authenticated}}
+        <p>CABECERA</p>
+
+        {% block content %}
+        reemplazame
+        {% endblock %}
+
+        <p>PIE DE PAGINA</p>        
+    </body>
+</html>
