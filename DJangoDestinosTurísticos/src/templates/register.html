@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,27 +6,86 @@
     <meta http-equiv='X-UA-Compatible' content = 'IE=edge'>
     <title>Registeration</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src='main.js'></script>
 </head>    
-<body>
+<body style="background-image: url('https://i.pinimg.com/originals/ce/b9/51/ceb9512208ef992a75e791fadd7eacb3.jpg')">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark ">
+        <a class="flow-text" style="font-size: 45px;">Travello</a>
+    </nav>
     <form action="register" method="POST">
         {% csrf_token %}
 
-        <input type="text" name="first_name" placeholder="First Name"><br>
-        <input type="text" name="last_name" placeholder="Last Name"><br>
-        <input type="text" name="username" placeholder="Username"><br>
-        <input type="email" name="email" placeholder="email"><br>
-        <input type="password" name="password1" placeholder="Password"><br>
-        <input type="password" name="password2" placeholder="Confirm Password"><br>
-        <input type="Submit">
+        <div class="container">
+            <div id="App" class="row pt-3">
+                <div class="col-3"></div>
+                <div class="col-8">
+                    <div class="card">
+                        <div class="card-header text-center bg-dark">
+                            <h4 style="color:#ffffff";>Register Now</h4>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="col s6">
+                                <div class="input-field">
+                                    <input type="text" name="first_name" placeholder="First Name"><br>
+                                </div>
+                            </div>
+
+                            <div class="col s6">
+                                <div class="input-field">
+                                    <input type="text" name="last_name" placeholder="Last Name"><br>
+                                </div>
+                            </div>
+
+                            <div class="col s4">
+                                <div class="input-field">
+                                    <input type="text" name="username" placeholder="Username"><br>
+                                </div>
+                            </div>
+
+                            <div class="col s8">
+                                <div class="input-field">
+                                    <input type="email" name="email" placeholder="Email"><br>
+                                </div>
+                            </div>
+                            
+                            <div class="col s6">
+                                <div class="input-field">
+                                    <input type="password" name="password1" placeholder="Password"><br>
+                                </div>
+                            </div>
+
+                            <div class="col s6">
+                                <div class="input-field">
+                                    <input type="password" name="password2" placeholder="Confirm Password"><br>
+                                </div>
+                            </div>
+
+                            <center>
+                                <button type="Submit" class="btn waves-effect waves-light bg-dark">Register</button>
+                            </center>
+                        
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3"></div>
+            </div>
+        </div>
+
+       
 
     </form>
     
-    <div>
+    <div >
         {% for message in messages %}
-        <h3> {{messages}} </h3>
+            <h3><center> 
+                {{messages}}
+            </center></h3>
         {% endfor %}
     </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>

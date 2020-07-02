@@ -1,27 +1,62 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content = 'IE=edge'>
     <title>Page Title</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src='main.js'></script>
 </head>    
-<body>
+<body style="background-image: url('https://cdn.pixabay.com/photo/2016/08/29/02/15/eiffel-tower-1627329_960_720.jpg');">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark ">
+        <a class="flow-text" style="font-size: 45px;">Welcome to Travello</a>
+    </nav>
+    
+ 
     <form action="login" method="post">
         {% csrf_token %}
 
-        <input type="text" name="username" placeholder="username"><br>
-        <input type="password" name="password" placeholder="password"><br>
-        <input type="Submit">
+        <div class="container">
+            <div id="App" class="row pt-5">
+                <div class="col-3"></div>
+                <div class="col-5">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <h4>Login</h4>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="input-field">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input type="text" name="username" placeholder="username" class="form-control">
+                            </div>
+
+                            <div class="input-field">
+                                <i class="material-icons prefix">lock</i>
+                                <input type="password" name="password" placeholder="password">
+                            </div>
+                            <center>
+                                <button type="Submit" class="btn waves-effect waves-light">Log in</button>
+                            </center>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3"></div>
+            </div>
+        </div>
+
     </form>
 
     <div>
         {% for message in messages %}
-        <h3> {{message}} </h3>
+        <h3><center>{{message}} </center> </h3>
         {% endfor %}
     </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>
