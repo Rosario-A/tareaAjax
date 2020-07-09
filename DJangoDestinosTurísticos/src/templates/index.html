@@ -36,7 +36,7 @@
 
 									{% if user.is_authenticated %}
 									<li>Hello, {{user.first_name}}</li>
-									<li><a href="admin/travello/destination/add/">Add Destiny</a></li>
+									<li><a href="travello/destinationCreateView">Add Destiny</a></li>
 									<li><a href="accounts/logout">Logout</a></li>
 									{% else %}
 									<li><a href="accounts/register">Register</a></li>
@@ -257,12 +257,16 @@
 
 						{% for dest in dests%}
 						<!-- Destination -->
+
 						<div class="destination item">
 							<div class="destination_image">
 								<img src="{{dest.img.url}}" alt="">
-								{% if dest.offer %}
-								<div class="spec_offer text-center"><a href="#">Special Offer</a></div>
+								{% if user.is_authenticated %}
+									{% if dest.offer %}
+									<div class="spec_offer text-center"><a href="#">Special Offer</a></div>
+									{% endif %}
 								{% endif %}
+
 							</div>
 							<div class="destination_content">
 								<div class="destination_title"><a href="destinations.html">{{dest.name}}</a></div>
