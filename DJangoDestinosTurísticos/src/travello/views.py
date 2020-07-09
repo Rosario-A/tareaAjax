@@ -5,9 +5,7 @@ from .forms import DestinationForm, RawDestinationForm
 # Create your views here.
 
 def index(request):
-
     dests = Destination.objects.all()
-
     return render(request, "index.html", {'dests': dests})
 
 def destinationCreateView(request):
@@ -19,5 +17,7 @@ def destinationCreateView(request):
             Destination.objects.create(**form.cleaned_data)
         else:
             print(form.errors)
-    context = {'form': form}
+    context = {
+        'form': form,
+    }
     return render(request, 'destinationsCreate.html', context)

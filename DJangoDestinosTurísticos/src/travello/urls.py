@@ -5,3 +5,6 @@ urlpatterns = [
     path('',views.index, name='index'),
     path('destinationCreateView', views.destinationCreateView, name='destinationCreateView')
 ]
+
+
+
