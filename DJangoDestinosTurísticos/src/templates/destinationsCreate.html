@@ -1,8 +1,18 @@
-
-{% block content %}
-<form action='.' method='POST'> {% csrf_token %}
-    {{ form.as_p }}
-    <input type='submit' value='Grabar' />
-
-</form>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Add Destiny</title>
+    </head>
+    <body>
+        <form action="destinationCreateView" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name='name'><br>
+        <input type="file" name='img'><br>
+        <textarea name="desc" cols="30" rows="4"></textarea>
+        <input type="number" name='price'><br>
+        <input type="checkbox" name='offer'>
+        <label>Offer</label><br>
+        <input type="submit" value="Grabar">
+    </form>
+    </body>
+</html>

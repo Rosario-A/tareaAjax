@@ -9,15 +9,18 @@ def index(request):
     return render(request, "index.html", {'dests': dests})
 
 def destinationCreateView(request):
-    form = RawDestinationForm()
     if request.method == 'POST':
-        form = RawDestinationForm(request.POST)
-        if form.is_valid():
-            print(form.cleaned_data)
-            Destination.objects.create(**form.cleaned_data)
+        name=request.POST['name']
+        img = request.FILES['img']
+        desc = request.POST['desc']
+        price = request.POST['price']
+        offer = request.POST.get('offer', False)
+        if offer=='on':
+            offer=True
         else:
-            print(form.errors)
-    context = {
-        'form': form,
-    }
-    return render(request, 'destinationsCreate.html', context)
+            offer=False
+        my_form=Destination.objects.create(name=name, img=img, desc=desc, price=price, offer = offer)
+        my_form.save()
+        dests=Destination.objects.all()
+
+    return render(request, 'destinationsCreate.html')

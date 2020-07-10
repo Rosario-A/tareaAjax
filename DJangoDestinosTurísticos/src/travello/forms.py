@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import ModelForm
 from .models import Destination
 
 class DestinationForm(forms.ModelForm):
@@ -9,12 +10,14 @@ class DestinationForm(forms.ModelForm):
             'img',
             'desc',
             'price',
-            'offer'
+            'offer',
         ]
 
 class RawDestinationForm(forms.Form):
     name = forms.CharField()
     img = forms.ImageField()
-    desc = forms.Textarea()
+    desc = forms.CharField(
+        widget= forms.Textarea()
+    )
     price = forms.IntegerField()
     offer = forms.BooleanField()
