@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content = 'IE=edge'>
-    <title>Add Destiny</title>
+    <title>Modify</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -16,14 +16,13 @@
                 <a class="brand-logo">Add Destiny</a>
                 <!--<a class="flow-text" style="font-size: 45px;">Add Destiny</a>-->
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href='.'>Home</a></li>
                     <li><a href="destinationListView">List</a></li>
                     <li><a href="destinationModify">Modify</a></li>
                 </ul>
             </div>
         </nav>
 
-        <form action="destinationCreateView" method="POST" enctype="multipart/form-data">
+        <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
 
         <div class="container">
@@ -33,8 +32,11 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="input-field">
+                                <input type="hidden" name="id" id="id" value="{{data.id}}">
+                            </div>
+                            <div class="input-field">
                                 <i class="material-icons prefix">landscape</i>
-                                <input type="text" name='name' placeholder="Place" class="form-control">
+                                <input type="text" name='name' placeholder="Place" class="form-control" value="{{data.name}}">
                             </div>
                             <div class="input-field"> 
                                 <i class="material-icons prefix">insert_photo</i><br>
@@ -43,13 +45,13 @@
                             <div class="row">
                                 <div class="input-field">
                                     <i class="material-icons prefix">mode_edit</i>
-                                    <textarea id="textarea1" name="desc" placeholder="Description" class="form-control"></textarea>
+                                    <textarea id="textarea1" name="desc" placeholder="Description" class="form-control">{{data.desc}}</textarea>
                                     <!--<label for="textarea1"></label>-->
                                 </div>
                             </div>
                             <div class="input-field"> 
                                 <i class="material-icons prefix">monetization_on</i>
-                                <input type="number" name='price' placeholder="Price" class="form-control"><br>
+                                <input type="number" name='price' placeholder="Price" class="form-control" value="{{data.price}}"><br>
                             </div>
                             <div class="input-field"> 
                                 <p>
@@ -60,7 +62,7 @@
                                 </p>
                             </div>
                             <center>
-                                <button type="Submit" class="btn waves-effect waves-light">Add</button>
+                                <button type="Submit" class="btn waves-effect waves-light">Modify</button>
                             </center>
                         </div>
                     </div>

@@ -37,3 +37,20 @@ def destinationDeleteView(request, id):
     data.delete()
     return redirect(to='destinationListView')
 
+def destinationModify(request, id):
+    data=Destination.objects.get(id=id)
+    if request.method == 'POST':
+        data=Destination()
+        data.id=request.POST['id']
+        data.name=request.POST['name']
+        data.img=request.FILES['img']
+        data.desc=request.POST['desc']
+        data.price=request.POST['price']
+        data.offer=request.POST.get('offer',False)
+        if data.offer=='on':
+            data.offer=True
+        else :
+            data.offer=False
+        data.save()
+        return redirect('destinationListView')
+    return render(request,'destinationsModify.html',{'data':data,})
