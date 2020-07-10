@@ -1,5 +1,65 @@
-{% block content %}
-{% for instance in objectList %}
-    <p>  {{ instance.id }} - {{ instance.name }}</p>
-{% endfor %}
-{% endblock %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content = 'IE=edge'>
+        <title>Destinations</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src='main.js'></script>
+    </head>
+    <body style="background-image: url('https://cdn.pixabay.com/photo/2016/08/29/02/15/eiffel-tower-1627329_960_720.jpg');">
+        <nav>
+            <div class="nav-wrapper navbar-dark bg-dark">
+                <a class="brand-logo">Destinations</a>
+                <!--<a class="flow-text" style="font-size: 45px;">Add Destiny</a>-->
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="destinationCreateView">Add Destiny</a></li>
+                    <li><a href="badges.html">Components</a></li>
+                    <li><a href="collapsible.html">JavaScript</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div id="App" class="row pt-5">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <div class="card">
+                        <div class="card-body">
+                            {% block content %}
+                            <table class="highlight">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Image</th>
+                                        <th>Description</th>
+                                        <th>Price</th>
+                                        <th>Offer</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for instance in objectList %}
+                                    <tr>
+                                        <td>{{ instance.id }}</td>
+                                        <td>{{ instance.name }}</td>
+                                        <td>{{ instance.img }}</td>
+                                        <td>{{ instance.desc }}</td>
+                                        <td>{{ instance.price }}</td>
+                                        <td>{{ instance.offer }}</td>
+                                      </tr>
+                                    <tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
