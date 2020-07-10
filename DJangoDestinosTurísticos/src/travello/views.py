@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Destination
-from .forms import DestinationForm, RawDestinationForm
+#from .forms import DestinationForm, RawDestinationForm
 
 # Create your views here.
 
@@ -24,3 +24,10 @@ def destinationCreateView(request):
         dests=Destination.objects.all()
 
     return render(request, 'destinationsCreate.html')
+
+def destinationListView(request):
+    queryset = Destination.objects.all()
+    context = {
+        'objectList': queryset,
+    }
+    return render(request, 'destinationsList.html', context)

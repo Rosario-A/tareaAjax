@@ -1,18 +1,72 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Add Destiny</title>
-    </head>
-    <body>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content = 'IE=edge'>
+    <title>Add Destiny</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src='main.js'></script>
+</head>
+    <body style="background-image: url('https://cdn.pixabay.com/photo/2016/08/29/02/15/eiffel-tower-1627329_960_720.jpg');">
+        <nav>
+            <div class="nav-wrapper navbar-dark bg-dark">
+                <a class="brand-logo">Add Destiny</a>
+                <!--<a class="flow-text" style="font-size: 45px;">Add Destiny</a>-->
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="destinationListView">List</a></li>
+                    <li><a href="badges.html">Components</a></li>
+                    <li><a href="collapsible.html">JavaScript</a></li>
+                </ul>
+            </div>
+        </nav>
+
         <form action="destinationCreateView" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <input type="text" name='name'><br>
-        <input type="file" name='img'><br>
-        <textarea name="desc" cols="30" rows="4"></textarea>
-        <input type="number" name='price'><br>
-        <input type="checkbox" name='offer'>
-        <label>Offer</label><br>
-        <input type="submit" value="Grabar">
+
+        <div class="container">
+            <div id="App" class="row pt-5">
+                <div class="col-4"></div>
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="input-field">
+                                <i class="material-icons prefix">landscape</i>
+                                <input type="text" name='name' placeholder="Place" class="form-control">
+                            </div>
+                            <div class="input-field"> 
+                                <i class="material-icons prefix">insert_photo</i><br>
+                                <input type="file" name='img'>
+                            </div>
+                            <div class="row">
+                                <div class="input-field">
+                                    <i class="material-icons prefix">mode_edit</i>
+                                    <textarea id="textarea1" name="desc" placeholder="Description" class="form-control"></textarea>
+                                    <!--<label for="textarea1"></label>-->
+                                </div>
+                            </div>
+                            <div class="input-field"> 
+                                <i class="material-icons prefix">monetization_on</i>
+                                <input type="number" name='price' placeholder="Price" class="form-control"><br>
+                            </div>
+                            <div class="input-field"> 
+                                <p>
+                                    <label>
+                                        <input type="checkbox" name='offer' />
+                                        <span>Offer</span>
+                                    </label>
+                                </p>
+                            </div>
+                            <center>
+                                <button type="Submit" class="btn waves-effect waves-light">Add</button>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
     </body>
 </html>
