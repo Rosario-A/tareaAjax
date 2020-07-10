@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Destination
 #from .forms import DestinationForm, RawDestinationForm
 
@@ -31,3 +31,9 @@ def destinationListView(request):
         'objectList': queryset,
     }
     return render(request, 'destinationsList.html', context)
+
+def destinationDeleteView(request, id):
+    data=Destination.objects.get(id=id)
+    data.delete()
+    return redirect(to='destinationListView')
+
